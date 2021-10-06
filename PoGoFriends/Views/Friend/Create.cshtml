@@ -1,0 +1,69 @@
+﻿@model PoGoFriends.Models.Friends
+@{
+    ViewData["Title"] = "Create Request";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-8">
+            <h2 class="text-primary">Leave your friend request</h2>
+        </div>
+        <div class="col-4 text-right">
+            <a asp-controller="Friend" asp-action="Index" class="btn btn-primary">Go back</a>
+        </div>
+    </div>
+    <br />
+    <form asp-action="Create" method="post" data-ajax="true" data-ajax-success="emptyForm()" id="createForm">
+        <div class="border p-3">
+            <div class="form-group">
+                <label asp-for="Nickname"></label>
+                <input asp-for="Nickname" class="form-control" id="nickname" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Code"></label>
+                <input asp-for="Code" class="form-control" id="code" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country"></label>
+                <input asp-for="Country" class="form-control" id="country" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TextBox"></label>
+                <textarea asp-for="TextBox" class="form-control" id="textbox"></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger w-25">Create</button>
+        </div>
+    </form>
+
+    <div class="col-6 pt-3">
+        <p class="text-success" style="display:none" id="datasent">Friend request sent! </p>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            function emptyForm() {
+
+                // Clear form
+                document.getElementById("createForm").reset();
+
+                // Send success message
+                $("#datasent").show();
+                setTimeout(function () {
+                    $("#datasent").hide();
+                }, 5000);
+
+            }
+            
+        </script>
+    }
+}
+
+

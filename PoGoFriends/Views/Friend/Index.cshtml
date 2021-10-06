@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PoGoFriends.Models.Friends>
+@{
+    ViewData["Title"] = "Find a new friend!";
+
+}
+<div class="container p-3">
+    <div class="row pt-4 ml-4">
+        <div class="col-8">
+            <h2 class="text-primary">Make new friends</h2>
+        </div>
+        <div class="col-4 text-right">
+            <a asp-controller="Friend" asp-action="Create" class="btn btn-primary">Create Request</a>
+        </div>
+    </div>
+    <br />
+
+
+    <div class="card-columns">
+        @if (Model.Count() > 0)
+        {
+
+            @foreach (var obj in Model.Reverse())
+            {
+                <div class="card m-4 border-success">
+                    <div class="card-header bg-light border-secondary">@Html.DisplayNameFor(model => model.Code): @obj.Code</div>
+                    <div class="card-body border-secondary">
+                        <h5 class="card-title">@obj.Nickname</h5>
+                        <p class="card-text">@obj.TextBox</p>
+                    </div>
+                    <div class="card-footer bg-transparent">@Html.DisplayNameFor(model => model.Country): @obj.Country</div>
+                </div>
+                <br />
+            }
+        }
+        else
+        {
+            <div class="container">
+                <p>No friends yet</p>
+            </div>
+        }
+    </div>
+</div>
