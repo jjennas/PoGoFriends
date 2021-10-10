@@ -22,6 +22,7 @@ namespace PoGoFriends.Models
         public long Code { get; set; }
 
         [DisplayName("Leave a note")]
+        [StringLength(200, ErrorMessage = "The maximum length of the message is 200 characters")]
         public string TextBox { get; set; }
     }
 }
