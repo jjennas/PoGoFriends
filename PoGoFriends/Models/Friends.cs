@@ -12,13 +12,15 @@ namespace PoGoFriends.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [StringLength(30, MinimumLength = 4)]
         public string Nickname { get; set; }
         [Required]
         public string Country { get; set; }
-        [Required]
         [DisplayName("Trainer Code")]
-        public int Code { get; set; }
-     
+        [Required]
+        [RegularExpression("(^[0-9]{12}$)", ErrorMessage = "Trainer Code must be 12 digits and contain only numbers.")]
+        public long Code { get; set; }
+
         [DisplayName("Leave a note")]
         public string TextBox { get; set; }
     }

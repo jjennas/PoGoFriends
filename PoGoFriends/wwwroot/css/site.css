@@ -14,8 +14,10 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 /*Friend request card placement*/
 .card-columns {
-    column-count: 2;
+    display: inline-block;
+    break-inside: avoid-column;
 }
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
